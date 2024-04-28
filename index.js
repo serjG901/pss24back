@@ -1,4 +1,5 @@
 const Koa = require("koa");
+const cors = require('@koa/cors');
 const bodyParser = require("koa-bodyparser");
 const Router = require("koa-router");
 const serve = require("koa-static");
@@ -8,6 +9,7 @@ const queryString = require("node:querystring");
 require("dotenv").config();
 
 const app = new Koa();
+app.use(cors());
 
 app.use(async (ctx, next) => {
   try {

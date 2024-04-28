@@ -1,15 +1,13 @@
 {
-    "homepage": "https://serjg901.github.io/pss24back",
-    "name": "nodejs-sandbox",
-    "version": "1.0.0",
+    "name": "pss24back",
+    "version": "0.1.0",
     "description": "",
     "main": "index.html",
     "scripts": {
-        "devstart": "nodemon index.js",
-        "start": "index.js"
+        "start": "nodemon index.js"
     },
     "keywords": [],
-    "author": "Ives van Hoorne",
+    "author": "SerjG901",
     "license": "MIT",
     "devDependencies": {
         "nodemon": "^3.0.1"

@@ -5,8 +5,7 @@
     "description": "",
     "main": "index.html",
     "scripts": {
-        "devstart": "nodemon index.js",
-        "start": "index.js"
+        "start": "nodemon index.js"
     },
     "keywords": [],
     "author": "Ives van Hoorne",

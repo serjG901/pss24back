@@ -1,6 +1,6 @@
 {
     "homepage": "https://serjg901.github.io/pss24back",
-    "name": "nodejs-sandbox",
+    "name": "pss24back",
     "version": "1.0.0",
     "description": "",
     "main": "index.html",
@@ -8,12 +8,13 @@
         "start": "nodemon index.js"
     },
     "keywords": [],
-    "author": "Ives van Hoorne",
+    "author": "SerjG901",
     "license": "MIT",
     "devDependencies": {
         "nodemon": "^3.0.1"
     },
     "dependencies": {
+        "@koa/cors": "^5.0.0",
         "dotenv": "16.4.5",
         "koa": "2.15.3",
         "koa-bodyparser": "4.4.1",

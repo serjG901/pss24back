@@ -1,4 +1,5 @@
 const Koa = require("koa");
+const cors = require('@koa/cors');
 const bodyParser = require("koa-bodyparser");
 const Router = require("koa-router");
 const serve = require("koa-static");
@@ -8,6 +9,7 @@ const queryString = require("node:querystring");
 require("dotenv").config();
 
 const app = new Koa();
+app.use(cors());
 
 app.use(async (ctx, next) => {
   try {
@@ -61,10 +63,10 @@ const routes = {
       proxy: "/genre/movie/list",
       original: "https://api.themoviedb.org/3/genre/movie/list?language=en",
     },
-    search: {
+    /*search: {
       proxy: "/search/movie",
       original: "https://api.themoviedb.org/3/search/movie",
-    },
+    },*/
   },
 };
 
@@ -89,7 +91,7 @@ router
     const data = await res.json();
     ctx.body = `${JSON.stringify(data, null, 4)}`;
   })
-  .get(routes.ways.search.proxy, async (ctx) => {
+  /*.get(routes.ways.search.proxy, async (ctx) => {
     const url = queryString.parse(ctx.request.href.split("?")[1]);
     const { query, page } = url;
     const str = queryString.stringify({ query, page });
@@ -99,7 +101,7 @@ router
     );
     const data = await res.json();
     ctx.body = `${JSON.stringify(data, null, 4)}`;
-  })
+  })*/
   .get(routes.ways.genre.proxy, async (ctx) => {
     const res = await fetch(routes.ways.genre.original, routes.options);
     const data = await res.json();

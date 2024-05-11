@@ -1,5 +1,5 @@
 const Koa = require("koa");
-const cors = require('@koa/cors');
+const cors = require("@koa/cors");
 const bodyParser = require("koa-bodyparser");
 const Router = require("koa-router");
 const serve = require("koa-static");
@@ -82,10 +82,31 @@ router
   })
   .get(routes.ways.discover.proxy, async (ctx) => {
     const url = queryString.parse(ctx.request.href.split("?")[1]);
-    const { page } = url;
-    const str = queryString.stringify({ page });
+    const {
+      page,
+      withGenres: with_genres,
+      primaryReleaseYear: primary_release_year,
+      sortBy: sort_by,
+      voteAverageLte,
+      voteAverageGte,
+    } = url;
+    const voteAverageL = `${voteAverageLte ? "vote_average.lte=" + voteAverageLte : ""}`;
+    const voteAverageG = `${voteAverageGte ? "vote_average.gte=" + voteAverageGte : ""}`;
+    const voteAverage =
+      voteAverageL && voteAverageG
+        ? voteAverageL + "&" + voteAverageG + "&"
+        : voteAverageL
+          ? voteAverageL + "&"
+          : voteAverageG + "&";
+    const str = queryString.stringify({
+      page,
+      with_genres,
+      primary_release_year,
+      sort_by,
+    });
+    console.log(str);
     const res = await fetch(
-      `${routes.ways.discover.original}?${str}`,
+      `${routes.ways.discover.original}?${str}&${voteAverage}`,
       routes.options,
     );
     const data = await res.json();

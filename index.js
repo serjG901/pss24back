@@ -63,10 +63,6 @@ const routes = {
       proxy: "/genre/movie/list",
       original: "https://api.themoviedb.org/3/genre/movie/list?language=en",
     },
-    /*search: {
-      proxy: "/search/movie",
-      original: "https://api.themoviedb.org/3/search/movie",
-    },*/
   },
 };
 
@@ -74,7 +70,7 @@ router
   .get(routes.ways.movieId.proxy, async (ctx) => {
     const id = ctx.params.id;
     const res = await fetch(
-      `${routes.ways.movieId.original}${id}`,
+      `${routes.ways.movieId.original}${id}?append_to_response=videos`,
       routes.options,
     );
     const data = await res.json();
@@ -104,7 +100,6 @@ router
       primary_release_year,
       sort_by,
     });
-    console.log(str);
     const res = await fetch(
       `${routes.ways.discover.original}?${str}&${voteAverage}`,
       routes.options,
@@ -112,17 +107,6 @@ router
     const data = await res.json();
     ctx.body = `${JSON.stringify(data, null, 4)}`;
   })
-  /*.get(routes.ways.search.proxy, async (ctx) => {
-    const url = queryString.parse(ctx.request.href.split("?")[1]);
-    const { query, page } = url;
-    const str = queryString.stringify({ query, page });
-    const res = await fetch(
-      `${routes.ways.search.original}?${str}`,
-      routes.options,
-    );
-    const data = await res.json();
-    ctx.body = `${JSON.stringify(data, null, 4)}`;
-  })*/
   .get(routes.ways.genre.proxy, async (ctx) => {
     const res = await fetch(routes.ways.genre.original, routes.options);
     const data = await res.json();

@@ -123,13 +123,13 @@ router
     });
 
 app.use(router.routes()).use(router.allowedMethods());
-/*
+
 app.use(mount("/", serve("./dist")));
 
 app.use(async (ctx) => {
   await send(ctx, "./dist/index.html");
 });
-*/
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`listening on port ${port}`));
 

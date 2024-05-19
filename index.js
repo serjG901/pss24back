@@ -108,7 +108,6 @@ router
             sort_by,
             page,
         });
-        console.log(`${routes.ways.discover.original}?${voteAverage}&${str}`);
         const res = await fetch(
             `${routes.ways.discover.original}?${voteAverage}&${str}`,
             routes.options

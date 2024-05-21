@@ -87,7 +87,6 @@ router
       voteAverageLte,
       voteAverageGte,
     } = url;
-    console.log(with_genres);
     const voteAverageL = `${
       voteAverageLte ? "vote_average.lte=" + voteAverageLte : ""
     }`;
@@ -107,6 +106,7 @@ router
       sort_by,
       page,
     });
+    console.log(str);
     const res = await fetch(
       `${routes.ways.discover.original}?${voteAverage}&${str}`,
       routes.options,
